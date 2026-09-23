@@ -1,0 +1,74 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class StackLinkedList:
+    def __init__(self):
+        self.top = None
+
+    # Push operation
+    def push(self, data):
+        new = Node(data)
+        new.next = self.top
+        self.top = new
+        print(data, "pushed into stack")
+
+    # Pop operation
+    def pop(self):
+        if self.top is None:
+            print("Stack Underflow")
+        else:
+            print(self.top.data, "popped from stack")
+            self.top = self.top.next
+
+    # Peek operation
+    def peek(self):
+        if self.top is None:
+            print("Stack is empty")
+        else:
+            print("Top element:", self.top.data)
+
+    # Display operation
+    def display(self):
+        if self.top is None:
+            print("Stack is empty")
+            return
+
+        temp = self.top
+
+        print("Stack elements:", end=" ")
+
+        while temp:
+            print(temp.data, end=" ")
+            temp = temp.next
+
+        print()
+
+
+s = StackLinkedList()
+
+n = int(input("Enter number of elements: "))
+
+for i in range(n):
+    data = int(input("Enter data: "))
+    s.push(data)
+
+print("Stack:")
+s.display()
+
+s.peek()
+
+data = int(input("Enter data to push: "))
+s.push(data)
+
+print("After push:")
+s.display()
+
+s.pop()
+
+print("After pop:")
+s.display()
+
+s.peek()
