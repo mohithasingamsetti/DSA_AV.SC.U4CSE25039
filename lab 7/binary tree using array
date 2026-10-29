@@ -1,0 +1,77 @@
+class BinaryTree:
+    def __init__(self, size):
+        self.tree = [None] * size
+        self.size = size
+
+    def insert(self, value):
+        for i in range(self.size):
+            if self.tree[i] is None:
+                self.tree[i] = value
+                print(value, "inserted")
+                return
+        print("Tree is full")
+
+    def search(self, value):
+        for i in range(self.size):
+            if self.tree[i] == value:
+                print(value, "found at index", i)
+                return
+        print(value, "not found")
+
+    def delete(self, value):
+        for i in range(self.size):
+            if self.tree[i] == value:
+                self.tree[i] = None
+                print(value, "deleted")
+                return
+        print(value, "not found")
+
+    def inorder(self, i=0):
+        if i < self.size and self.tree[i] is not None:
+            self.inorder(2 * i + 1)
+            print(self.tree[i], end=" ")
+            self.inorder(2 * i + 2)
+
+    def preorder(self, i=0):
+        if i < self.size and self.tree[i] is not None:
+            print(self.tree[i], end=" ")
+            self.preorder(2 * i + 1)
+            self.preorder(2 * i + 2)
+
+    def postorder(self, i=0):
+        if i < self.size and self.tree[i] is not None:
+            self.postorder(2 * i + 1)
+            self.postorder(2 * i + 2)
+            print(self.tree[i], end=" ")
+
+
+bt = BinaryTree(10)
+
+while True:
+    print("\n1.Insert  2.Delete  3.Search")
+    print("4.Inorder  5.Preorder  6.Postorder  7.Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        value = int(input("Enter value: "))
+        bt.insert(value)
+    elif choice == 2:
+        value = int(input("Enter value to delete: "))
+        bt.delete(value)
+    elif choice == 3:
+        value = int(input("Enter value to search: "))
+        bt.search(value)
+    elif choice == 4:
+        bt.inorder()
+        print()
+    elif choice == 5:
+        bt.preorder()
+        print()
+    elif choice == 6:
+        bt.postorder()
+        print()
+    elif choice == 7:
+        break
+    else:
+        print("Invalid choice")
